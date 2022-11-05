@@ -1,4 +1,4 @@
-
+let wins = 0
 for (let i = 0; i < 5; i++) {
     let randomNumber = Math.floor(Math.random() * 100);
     function getComputerChoice() {
@@ -33,4 +33,12 @@ for (let i = 0; i < 5; i++) {
     let computerSelection = getComputerChoice();
     let playerSelection = window.prompt("Enter rock, paper, or scissors.")
     console.log(singleRound(computerSelection, playerSelection))
+    function counter(round) {
+        if (round.indexOf('You win!') >= 0) {
+            return ++wins;
+        } else {
+            return wins;
+        }
+    }
+    console.log(counter(singleRound(computerSelection, playerSelection)))
 }
