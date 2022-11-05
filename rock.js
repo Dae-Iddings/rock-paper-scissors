@@ -40,5 +40,13 @@ for (let i = 0; i < 5; i++) {
             return wins;
         }
     }
-    console.log(counter(singleRound(computerSelection, playerSelection)))
+    console.log('You have ' + counter(singleRound(computerSelection, playerSelection))+ ' wins')
 }
+function winner(wins) {
+    if (wins >= 3) {
+        return `You win! you beat the computer ${wins} times.`
+    } else {
+        return 'You lost! The computer beat you by ' + (5 - wins) + ' times.'
+    }
+}
+console.log(winner(wins))
