@@ -1,0 +1,23 @@
+* {
+    background-color: #F5D3C8;
+}
+.holder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 15px;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+.button {
+    background-color: #49306B;
+    font-size: larger;
+    color: white;
+}
+h1 {
+    font-size: xx-large;
+}
+p {
+    font-size: x-large;
+}

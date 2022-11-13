@@ -1,7 +1,6 @@
 let wins = 0
-for (let i = 0; i < 5; i++) {
-    let randomNumber = Math.floor(Math.random() * 100);
-    function getComputerChoice() {
+let lose = 0
+    function getComputerChoice(randomNumber) {
         if (randomNumber <= 33) {
             return 'rock';
         } else if (randomNumber >= 66) {
@@ -11,42 +10,52 @@ for (let i = 0; i < 5; i++) {
         }
     }
 
+let scoreDiv = document.querySelector('.scoreDiv');
+    const buttons = document.querySelectorAll('button');
+    buttons.forEach((button )=> {
+        button.addEventListener('click', function (e) {
+            function randomNumber() {
+                return Math.floor(Math.random() * 100);
+                }
+            let computerSelection = getComputerChoice(randomNumber());
+            counter(singleRound(computerSelection, button.id));
+            scoreDiv.textContent = singleRound(computerSelection, button.id) + ' Your wins: ' + wins + ' Computer wins: ' + lose;
+          if (wins === 5 ) {
+            alert('You won!');
+            window.location.reload()
+        } else if (lose === 5) {
+            alert('You lost!')
+            window.location.reload()
+        }
+          });
+});
+
     function singleRound(computerSelection2, playerSelection2) {
-        if (computerSelection2 === playerSelection2.toLowerCase()) {
+        if (computerSelection2 === playerSelection2) {
             return 'It\'s a tie!';
-        } else if (computerSelection2 === 'rock' && playerSelection2.toLowerCase() === 'scissors') {
+        } else if (computerSelection2 === 'rock' && playerSelection2 === 'scissors') {
             return 'You lose! Rock beats scissors.';
-        } else if (computerSelection2 === 'paper' && playerSelection2.toLowerCase() === 'rock') {
+        } else if (computerSelection2 === 'paper' && playerSelection2 === 'rock') {
             return 'You lose! Paper beats rock.';
-        } else if (computerSelection2 === 'scissors' && playerSelection2.toLowerCase() === 'paper') {
+        } else if (computerSelection2 === 'scissors' && playerSelection2 === 'paper') {
             return 'You lose! Scissors beat paper.';
-        } else if (computerSelection2 === 'rock' && playerSelection2.toLowerCase() === 'paper') {
+        } else if (computerSelection2 === 'rock' && playerSelection2 === 'paper') {
             return 'You win! Paper beats rock.';
-        } else if (computerSelection2 === 'paper' && playerSelection2.toLowerCase() === 'scissors') {
+        } else if (computerSelection2 === 'paper' && playerSelection2 === 'scissors') {
             return 'You win! scissors beat paper.';
-        } else if (computerSelection2 === 'scissors' && playerSelection2.toLowerCase() === 'rock') {
+        } else if (computerSelection2 === 'scissors' && playerSelection2 === 'rock') {
             return 'You win! Rock beats scissors';
         } else {
             return 'enter a valid answer'
         }
     }
-    let computerSelection = getComputerChoice();
-    let playerSelection = window.prompt("Enter rock, paper, or scissors.")
-    console.log(singleRound(computerSelection, playerSelection))
     function counter(round) {
         if (round.indexOf('You win!') >= 0) {
             return ++wins;
+        } else if (round.indexOf('You lose!')) {
+            ++lose
+            return wins;
         } else {
             return wins;
-        }
-    }
-    console.log('You have ' + counter(singleRound(computerSelection, playerSelection))+ ' wins')
-}
-function winner(wins) {
-    if (wins >= 3) {
-        return `You win! you beat the computer ${wins} times.`
-    } else {
-        return 'You lost! The computer beat you by ' + (5 - wins) + ' times.'
     }
 }
-console.log(winner(wins))
